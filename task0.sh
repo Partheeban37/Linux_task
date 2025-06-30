@@ -44,6 +44,6 @@ case $ch in
         fi
 		;;
 	*)
-        	echo "Invalid option"
-        	;;
+        echo "Invalid option"
+        ;;
 esac
