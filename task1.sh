@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cmdin=$1
-echo <<m 
+cat <<m 
 ----select any option----
 =========================
 view                  : 1
