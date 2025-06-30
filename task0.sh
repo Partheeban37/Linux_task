@@ -14,14 +14,20 @@ case $ch in
 		while read -r line; do
 		wget -P /home/parthi/Downloads/task_image "$line"
 		done < imageurl.csv
-		echo "********Images are save in this location : /home/parthi/Downloads/task_image*********"
+		if [$? -eq 0]
+		then
+			echo "********Images are save in this location : /home/parthi/Downloads/task_image*********"
+		fi	
 		;;
 	2)
 		echo "Enter the specific image number (1 to 11)"
 		read spec
 		Sline=$(head -n "$spec" imageurl.csv | tail -n 1 )
 		wget -P /home/parthi/Downloads/task_image "$Sline"
-		echo "********  Images are save in this location : /home/parthi/Downloads/task_image  *********"
+                if [$? -eq 0]   
+                then    
+                        echo "********Images are save in this location : /home/parthi/Downloads/task_image*********"
+                fi
 		;;
 	3)
 		echo "Enter the range"
@@ -34,7 +40,10 @@ case $ch in
 		  Rline=$(head -n "$range" imageurl.csv | tail -n 1 )
 		  wget -P /home/parthi/Downloads/task_image "$Rline"
 		done
-		echo "********  Images are save in this location : /home/parthi/Downloads/task_image  *********"
+                if [$? -eq 0]   
+                then    
+                        echo "********Images are save in this location : /home/parthi/Downloads/task_image*********"
+                fi
 		;;
 	*)
         	echo "Invalid option"
