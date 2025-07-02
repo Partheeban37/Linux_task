@@ -1,18 +1,18 @@
 #!/bin/bash
 
 cmdin=$1
-cat <<m 
+cat <<m
 ----select any option----
 =========================
 view                  : 1
 kill                  : 2
 stop                  : 3
 continue              : 4
-List All processes!!  : 5
-search similar ps     : 6
-==========================
+search similar ps     : 5
+List All processes!!  : 6
+=========================
 m
-read ch
+read -p "Enter your option  : " ch
 
 case $ch in
 	1)
@@ -21,39 +21,41 @@ case $ch in
 		;;
 	2)
 		pkill "$1"
-		if [$? -eq 0]
+		if [ $? -eq 0 ] 
 		then
-		   echo "$cmdin was killed"
+		   echo -e "\n$cmdin was killed"
 		else 
-		   echo "enter correct process name"
+		   echo -e "\nenter correct process name"
 		fi
 		;;	
 	3)
-		echo ""
+		echo " "
 		pkill -19 "$1"
-		if [$? -eq 0]
+		if [ $? -eq 0 ]
 		then
-		   echo "$cmdin was stopped"
+		   echo -e "\n$cmdin was stopped"
 		else 
-		   echo "enter correct process name"
+		   echo -e "\nenter correct process name"
 		fi
 		;;
 	4)
 		pkill -18 "$1"
-		if [$? -eq 0]
+		if [ $? -eq 0 ]
 		then
-		   echo "Done"
+		   echo -e "\nDone"
 		else 
-		   echo "enter correct process name"
+		   echo -e "\nenter correct process name"
 		fi
 		;;
 	5)
+		echo -e "\n======|          Result          |====="
+                ps aux | grep -i "$1"
+                ;;
+
+	6)
 		ps aux
 		;;
-	6)
-		ps aux | grep "$1"
-		;;
 	*)
-		echo "Are you blind..!  just Enter one number (1 to 6)"
+		echo -e "\nAre you blind..!  just Enter one number (1 to 6)"
 		;;
 esac
